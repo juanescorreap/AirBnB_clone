@@ -82,10 +82,15 @@ class HBNBCommand(cmd.Cmd):
         args_sp = args.split()
         for key, value in storage.all().items():
             className = key.split(".")
-            if className[0] == args_sp[0]:
+            if len(args) == 0:
                 newlist.append(value.__str__())
-                """print("->{}".format(value))"""
-        print(newlist)
+            elif className[0] == args_sp[0]:
+                newlist.append(value.__str__())
+        if bool(newlist) is False:
+            print("** class doesn't exist **")
+        else:
+            print(newlist)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
