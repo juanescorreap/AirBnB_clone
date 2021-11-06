@@ -105,8 +105,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         args_sp = args.split()
-        args_sp[3] = args_sp[3].strip('"')
         if self.check_for_class(args_sp) and self.check_for_id(args_sp) and self.check_for_attribute (args_sp):
+            args_sp[3] = args_sp[3].strip('"')
             class_id = args_sp[0] + "." + args_sp[1]
             attribute = args_sp[2]
             upd_instance = storage.all().get(class_id)

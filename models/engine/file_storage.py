@@ -6,6 +6,7 @@ import json
 import os
 
 
+
 class FileStorage():
     """
     FileStorage definition
@@ -32,6 +33,7 @@ class FileStorage():
 
     def reload(self):
         from models.base_model import BaseModel
+        from models.user import User
         dict_deserialized = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, encoding="utf-8") as my_file:
