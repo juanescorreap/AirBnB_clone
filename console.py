@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
                 return False
 
     def check_for_id(self, args):
-        if len(args) != 2:
+        if len(args) < 2:
             print("** instance id missing **")
             return False
 
@@ -56,6 +56,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
             return False
+
+    def check_for_attribute(self, args):
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return False
+        elif len(args) < 4:
+            print("** value missing **")
+            return False
+        elif args[3] in ['id', 'created_at', 'created_at']:
+            return False
+        else:
+            return True
 
     def do_create(self, args):
         className = args.split()
@@ -90,6 +102,21 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(newlist)
+
+    def do_update(self, args):
+        args_sp = args.split()
+        args_sp[3] = args_sp[3].strip('"')
+        if self.check_for_class(args_sp) and self.check_for_id(args_sp) and self.check_for_attribute (args_sp):
+            class_id = args_sp[0] + "." + args_sp[1]
+            attribute = args_sp[2]
+            upd_instance = storage.all().get(class_id)
+            try:
+                upd_attr = getattr(upd_instance, attribute)
+            except:
+                upd_attr =  ""
+            type_attr = type (upd_attr)
+            setattr(upd_instance, attribute, type_attr(args_sp[3]))
+            upd_instance.save()
 
 
 if __name__ == '__main__':
