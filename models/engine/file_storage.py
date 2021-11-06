@@ -34,6 +34,12 @@ class FileStorage():
     def reload(self):
         from models.base_model import BaseModel
         from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
         dict_deserialized = {}
         if os.path.exists(self.__file_path):
             with open(self.__file_path, encoding="utf-8") as my_file:
@@ -49,4 +55,3 @@ class FileStorage():
                 self.new(new_instance)
         else:
             pass
-
