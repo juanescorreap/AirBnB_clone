@@ -2,12 +2,12 @@
 """
 Class that defines user
 """
-
 from models.base_model import BaseModel
+
 
 class City(BaseModel):
     """
-    Class that defines user
+        Initialize public City class attributes
     """
     state_id = ""
     name = ""

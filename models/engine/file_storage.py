@@ -6,24 +6,33 @@ import json
 import os
 
 
-
 class FileStorage():
     """
-    FileStorage definition
+        Initialize private FileStorage class attributes
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """
+            Returns the __objects dictionary
+        """
         return(self.__objects)
 
     def new(self, obj):
+        """
+            Creates a new key(class.id) & value(instance attributes dictionary)
+            of an instance in __objects dictionary
+        """
         if obj is not None:
             self.__objects.update(
-                {str(type(obj).__name__ + "." + obj.id ): obj})
-
+                {str(type(obj).__name__ + "." + obj.id): obj})
 
     def save(self):
+        """
+            Append all keys & values set on __objects dictionary
+            into a new dictionary to save all instances in a json file
+        """
         dict_serialized = {}
         if self.__objects is not None:
             for key, value in self.__objects.items():
@@ -32,6 +41,10 @@ class FileStorage():
             json.dump(dict_serialized, my_file)
 
     def reload(self):
+        """
+            Load the .json file(verify existence), set all keys & values into
+            the __objects dictionary and recreate instances found in the file
+        """
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State

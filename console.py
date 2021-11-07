@@ -13,9 +13,11 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class HBNBCommand(cmd.Cmd):
     """
-    Class that defines HBNBCommand
+        Class that defines HBNBCommand, defines the prompt and the methods
+        to create, update, show and delete instances.
     """
     prompt = '(hbnb) '
 
@@ -38,6 +40,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def check_for_class(self, args):
+        """
+            Evaluate if the given arguments are valid
+            and the class exists
+        """
         if len(args) == 0:
             print("** class name missing **")
             return False
@@ -52,6 +58,10 @@ class HBNBCommand(cmd.Cmd):
                 return False
 
     def check_for_id(self, args):
+        """
+            Evaluate if the given arguments are valid and instance id
+            is present to set or update.
+        """
         if len(args) < 2:
             print("** instance id missing **")
             return False
@@ -64,6 +74,10 @@ class HBNBCommand(cmd.Cmd):
             return False
 
     def check_for_attribute(self, args):
+        """
+            Evaluate if the given arguments are valid and
+            attribute name and value are present to set or update.
+        """
         if len(args) < 3:
             print("** attribute name missing **")
             return False
@@ -76,6 +90,10 @@ class HBNBCommand(cmd.Cmd):
             return True
 
     def do_create(self, args):
+        """
+            If arguments are valid create a new instance according to
+            given values.
+        """
         className = args.split()
         if self.check_for_class(className):
             new_instance = eval("{}()".format(className[0]))
@@ -83,12 +101,20 @@ class HBNBCommand(cmd.Cmd):
             print(new_instance.id)
 
     def do_show(self, arg):
+        """
+            If arguments are valid prints an specific instance according to
+            given values.
+        """
         class_id = arg.split()
         if self.check_for_class(class_id) and self.check_for_id(class_id):
             dict = storage.all()
             print("{}".format(dict[class_id[0] + "." + class_id[1]]))
 
     def do_destroy(self, args):
+        """
+            If arguments are valid delete an specific instance according to
+            given values and update the json file
+        """
         class_id = args.split()
         if self.check_for_class(class_id) and self.check_for_id(class_id):
             dict = storage.all()
@@ -96,6 +122,10 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, args):
+        """
+            If arguments are valid prints an specific class or all classes
+            according to given values.
+        """
         newlist = []
         args_sp = args.split()
         for key, value in storage.all().items():
@@ -110,8 +140,13 @@ class HBNBCommand(cmd.Cmd):
             print(newlist)
 
     def do_update(self, args):
+        """
+            If arguments are valid create or update an attribute value
+            in a specific instance according to given values.
+        """
         args_sp = args.split()
-        if self.check_for_class(args_sp) and self.check_for_id(args_sp) and self.check_for_attribute (args_sp):
+        if (self.check_for_class(args_sp) and self.check_for_id(args_sp) and
+                self.check_for_attribute(args_sp)):
             args_sp[3] = args_sp[3].strip('"')
             class_id = args_sp[0] + "." + args_sp[1]
             attribute = args_sp[2]
@@ -119,8 +154,8 @@ class HBNBCommand(cmd.Cmd):
             try:
                 upd_attr = getattr(upd_instance, attribute)
             except:
-                upd_attr =  ""
-            type_attr = type (upd_attr)
+                upd_attr = ""
+            type_attr = type(upd_attr)
             setattr(upd_instance, attribute, type_attr(args_sp[3]))
             upd_instance.save()
 

@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """
-Class that defines user
+Class that defines Place
 """
-
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
     """
-    Class that defines user
+        Initialize public Place class attributes
     """
     city_id = ""
     user_id = ""

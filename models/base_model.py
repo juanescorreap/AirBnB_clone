@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-BASE MODEL
+    Class that defines a Base model
 """
 import uuid
 from datetime import datetime
@@ -9,10 +9,12 @@ from models import storage
 
 class BaseModel():
     """
-    Base class definition
+        Class that defines Base model attributes and methods.
     """
-
     def __init__(self, *args, **kwargs):
+        """
+            Create new instances according given arguments and store the info
+        """
         if kwargs is not None and len(kwargs) > 0:
             for key, value in kwargs.items():
                 if key == "updated_at" or key == "created_at":
@@ -25,21 +27,27 @@ class BaseModel():
             self.updated_at = datetime.now()
             storage.new(self)
 
-
     def __str__(self):
-        """ Modify the stdr output with a specific format """
+        """
+            Modify the stdr output with a specific format
+        """
         return "[{}] ({}) {}".format(type(self).__name__, self.id,
                                      self.__dict__)
 
     def save(self):
-        """updates the attribute updated_at with the current datetime"""
+        """
+            Update the attribute updated_at with the current datetime
+            and save changes in json file.
+        """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """returns a Dictionary with specific attributes """
-        """__dict__ returns only set attrinbutes???"""
-        printDictionary =  self.__dict__.copy()
+        """
+            Return a Dictionary with specific attributes and format
+        """
+        printDictionary = self.__dict__.copy()
         printDictionary.update({'created_at': self.created_at.isoformat(),
-                           'updated_at': self.updated_at.isoformat(), '__class__': type(self).__name__})
+                                'updated_at': self.updated_at.isoformat(),
+                                '__class__': type(self).__name__})
         return printDictionary

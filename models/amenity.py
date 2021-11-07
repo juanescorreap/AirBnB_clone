@@ -2,16 +2,15 @@
 """
 Class that defines user
 """
-
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
     """
-    Class that defines user
+        Initialize public Amenity class attributes
     """
     name = ""
-    
+
     def __init__(self, *args, **kwargs):
         """
             Sends arguments to the parent class and create a new instance
