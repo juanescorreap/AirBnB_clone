@@ -162,8 +162,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, arg):
         """
-            If arguments are valid prints an specific instance according to
-            given values.
+            If arguments are valid counts the number of instances for a
+            given class
         """
         counter = 0
         args_sp = arg.split()
@@ -176,6 +176,10 @@ class HBNBCommand(cmd.Cmd):
         print(counter)
 
     def default(self, args):
+        """
+            If arguments are valid executes one of the commands built
+            for the console
+        """
 
         dict_methods = {
             'create': self.do_create,
