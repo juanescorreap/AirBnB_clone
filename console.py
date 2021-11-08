@@ -170,32 +170,32 @@ class HBNBCommand(cmd.Cmd):
         for key, value in storage.all().items():
             className = key.split(".")
             if len(arg) == 0:
-               return
+                return
             elif className[0] == args_sp[0]:
                 counter = counter + 1
         print(counter)
 
-
     def default(self, args):
 
         dict_methods = {
-        'create': self.do_create,
-        'show': self.do_show,
-        'destroy': self.do_destroy,
-        'all': self.do_all,
-        'update': self.do_update,
-        'count' : self.do_count
+            'create': self.do_create,
+            'show': self.do_show,
+            'destroy': self.do_destroy,
+            'all': self.do_all,
+            'update': self.do_update,
+            'count': self.do_count
         }
 
-        parameters = (args.replace("(", ".").replace(")", ".").replace('"', "").replace(",", ""))
+        parameters = (args.replace("(", ".").replace(
+            ")", ".").replace('"', "").replace(",", ""))
         parameters = parameters.split(".")
         if parameters[1] in dict_methods.keys():
             if len(parameters) > 2:
                 method_exec = dict_methods[parameters[1]]
-                class_id = parameters[0] + " " +parameters[2]
+                class_id = parameters[0] + " " + parameters[2]
                 method_exec(class_id)
             else:
-               print("*** Unknown syntax:", args[0])
+                print("*** Unknown syntax:", args[0])
         else:
             return
 
