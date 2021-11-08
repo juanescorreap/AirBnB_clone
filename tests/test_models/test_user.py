@@ -3,8 +3,8 @@
 Test cases for the User class
 """
 
-from models import BaseModel
-from models import User
+from models.base_model import BaseModel
+from models.user import User
 import unittest
 import inspect
 import time

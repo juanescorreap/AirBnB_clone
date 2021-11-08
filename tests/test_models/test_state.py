@@ -3,8 +3,8 @@
 Test cases for the State class
 """
 
-from models import BaseModel
-from models import State
+from models.base_model import BaseModel
+from models.state import State
 import unittest
 import inspect
 import time

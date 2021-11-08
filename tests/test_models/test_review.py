@@ -3,8 +3,8 @@
 Test cases for the Review class
 """
 
-from models import BaseModel
-from models import Review
+from models.base_model import BaseModel
+from models.review import Review
 import unittest
 import inspect
 import time

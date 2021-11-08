@@ -3,8 +3,8 @@
 Test cases for the Amenity class
 """
 
-from models import BaseModel
-from models import Amenity
+from models.base_model import BaseModel
+from models.amenity import Amenity
 import unittest
 import inspect
 import time

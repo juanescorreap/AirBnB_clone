@@ -3,8 +3,8 @@
 Test cases for the City class
 """
 
-from models import BaseModel
-from models import City
+from models.base_model import BaseModel
+from models.city import City
 import unittest
 import inspect
 import time
