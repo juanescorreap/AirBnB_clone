@@ -160,6 +160,22 @@ class HBNBCommand(cmd.Cmd):
             setattr(upd_instance, attribute, type_attr(args_sp[3]))
             upd_instance.save()
 
+    def do_count(self, arg):
+        """
+            If arguments are valid prints an specific instance according to
+            given values.
+        """
+        counter = 0
+        args_sp = arg.split()
+        for key, value in storage.all().items():
+            className = key.split(".")
+            if len(arg) == 0:
+               return
+            elif className[0] == args_sp[0]:
+                counter = counter + 1
+        print(counter)
+
+
     def default(self, args):
 
         dict_methods = {
@@ -167,7 +183,9 @@ class HBNBCommand(cmd.Cmd):
         'show': self.do_show,
         'destroy': self.do_destroy,
         'all': self.do_all,
-        'update': self.do_update}
+        'update': self.do_update,
+        'count' : self.do_count
+        }
 
         parameters = (args.replace("(", ".").replace(")", ".").replace('"', "").replace(",", ""))
         parameters = parameters.split(".")
@@ -178,8 +196,8 @@ class HBNBCommand(cmd.Cmd):
                 method_exec(class_id)
             else:
                print("*** Unknown syntax:", args[0])
-
-        """ User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})"""
+        else:
+            return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
