@@ -147,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
         args_sp = args.split()
         if (self.check_for_class(args_sp) and self.check_for_id(args_sp) and
                 self.check_for_attribute(args_sp)):
-            args_sp[3] = args_sp[3].strip('"')
+            for i in range(len(args_sp)):
+                args_sp[i] = args_sp[i].strip('"')
             class_id = args_sp[0] + "." + args_sp[1]
             attribute = args_sp[2]
             upd_instance = storage.all().get(class_id)
@@ -159,6 +160,26 @@ class HBNBCommand(cmd.Cmd):
             setattr(upd_instance, attribute, type_attr(args_sp[3]))
             upd_instance.save()
 
+    def default(self, args):
+
+        dict_methods = {
+        'create': self.do_create,
+        'show': self.do_show,
+        'destroy': self.do_destroy,
+        'all': self.do_all,
+        'update': self.do_update}
+
+        parameters = (args.replace("(", ".").replace(")", ".").replace('"', "").replace(",", ""))
+        parameters = parameters.split(".")
+        if parameters[1] in dict_methods.keys():
+            if len(parameters) > 2:
+                method_exec = dict_methods[parameters[1]]
+                class_id = parameters[0] + " " +parameters[2]
+                method_exec(class_id)
+            else:
+               print("*** Unknown syntax:", args[0])
+
+        """ User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})"""
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
