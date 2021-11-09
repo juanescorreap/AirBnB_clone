@@ -60,7 +60,7 @@ All commands are case sensitive:
 
 |  Class |         Description         |
 |----------------|----------------------------------------------|
-|'BaseModel`| Parent class containing all basic attributes and methods|
+|`BaseModel`| Parent class containing all basic attributes and methods|
 |`Amenity`| Class defines Amenity and its attributes.|
 |`City`| Class defines City and its attributes.|
 |`Place`|  Class defines Place and its attributes.|
