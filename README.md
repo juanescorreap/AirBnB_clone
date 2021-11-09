@@ -76,8 +76,8 @@ All commands are case sensitive:
 `update BaseModel 1234-1234-1234 email "aibnb@mail.com"`<br />
 `User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "first_name", "John")`
 #### Show instances, all or specific ones.
-`all`
-`all BaseModel`
-`User.all()`
+`all`<br />
+`all BaseModel`<br />
+`User.all()`<br />
 
         That's all, thanks for reading!
