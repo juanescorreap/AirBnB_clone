@@ -73,7 +73,7 @@ All commands are case sensitive:
 #### Create a new instance
 `create BaseModel`
 #### Update attributes
-`update BaseModel 1234-1234-1234 email "aibnb@mail.com"`
+`update BaseModel 1234-1234-1234 email "aibnb@mail.com"`<br />
 `User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", "first_name", "John")`
 #### Show instances, all or specific ones.
 `all`
