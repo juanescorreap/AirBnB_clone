@@ -46,15 +46,15 @@ To execute the console, run the console.py file in your terminal; this will init
 All commands are case sensitive:
 |  Commands |         Description         |           Input format         |
 |----------------|----------------------|------------------------|
-|`quit`|Exits the AirBnB console.| quit                |
-|`EOF`|Exits the program when passing an EOF signal.| CTRL + D|
+|`quit`|Exits the AirBnB console.| `quit`                |
+|`EOF`|Exits the program when passing an EOF signal.| `CTRL + D`|
 |`empty line`|Shows the prompt in a new line when passing an ENTER.|
-|`create`|Creates an instance of one of the available classes (See below).| create <class name>|
-| `show`| Shows the attributes and their values of an instance. | show <class name> <instance id>| 
-|`destroy`| Deletes an instance| destroy  <class name> <instance id>|
-|`all`|Prints all instances of a specified class; if no class is specified, prints all instances.|all or all <class name>|
-|`update`| Creates or updates an attribute's value for a specified instance| update <class name> <instance id> <attribute name> <attribute value>|
-|`count`| Counts the number of instances from a class.| <class name>.count()|
+|`create`|Creates an instance of one of the available classes (See below).| `create <class name>`|
+| `show`| Shows the attributes and their values of an instance. | `show <class name> <instance id>`| 
+|`destroy`| Deletes an instance| `destroy  <class name> <instance id>`|
+|`all`|Prints all instances of a specified class; if no class is specified, prints all instances.|`all` or `all <class name>`|
+|`update`| Creates or updates an attribute's value for a specified instance| `update <class name> <instance id> <attribute name> <attribute value>`|
+|`count`| Counts the number of instances from a class.| `<class name>.count()`|
 
 # Available classes
 
