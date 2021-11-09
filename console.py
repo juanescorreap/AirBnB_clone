@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) < 4:
             print("** value missing **")
             return False
-        elif args[3] in ['id', 'created_at', 'created_at']:
+        elif args[3] in ['id', 'updated_at', 'created_at']:
             return False
         else:
             return True
